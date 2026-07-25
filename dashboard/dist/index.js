@@ -13,6 +13,7 @@
 
   var API_BASE = "/api/plugins/navigator";
   var LAST_LOCATION_KEY = "hermes-navigator-last-location";
+  var PLUGIN_VERSION = "1.0.0"; // keep in sync with dashboard/manifest.json
 
   // ── Utility: Escape HTML ──────────────────────────────────
 
@@ -76,6 +77,19 @@
       }
     }
     return [filtered, autoExpanded];
+  }
+
+  // ── Tree traversal: collect every directory name ───────────
+
+  function collectDirNames(node, acc) {
+    if (!node || !node.children) return acc;
+    node.children.forEach(function(child) {
+      if (child.type === "dir") {
+        acc[child.name] = true;
+        collectDirNames(child, acc);
+      }
+    });
+    return acc;
   }
 
   // ── Tree Node Component ────────────────────────────────────
@@ -309,13 +323,7 @@
       return fetch(API_BASE + "/tree?location=" + encodeURIComponent(locationKey))
         .then(function(r) { return r.json(); })
         .then(function(data) {
-          var initialExpanded = {};
-          if (data && data.children) {
-            data.children.forEach(function(child) {
-              if (child.type === "dir") initialExpanded[child.name] = true;
-            });
-          }
-          setExpandedDirs(initialExpanded);
+          setExpandedDirs({});
           setTreeData(data);
           setTreeLoading(false);
         })
@@ -433,6 +441,15 @@
       setSearchFilter("");
     }
 
+    function handleExpandAll() {
+      if (!treeData) return;
+      setExpandedDirs(collectDirNames(treeData, {}));
+    }
+
+    function handleCollapseAll() {
+      setExpandedDirs({});
+    }
+
     function handleRefresh() {
       if (!activeLocation) return;
       setRefreshing(true);
@@ -537,6 +554,18 @@
                 value: searchFilter,
                 onChange: handleSearch
               }),
+              h("button", {
+                className: "filenav__tree-action-btn",
+                onClick: handleExpandAll,
+                title: "Expand all folders",
+                disabled: !treeData
+              }, "⊞"),
+              h("button", {
+                className: "filenav__tree-action-btn",
+                onClick: handleCollapseAll,
+                title: "Collapse all folders",
+                disabled: !treeData
+              }, "⊟"),
               searchFilter
                 ? h("button", {
                     className: "filenav__clear-filter",
@@ -591,12 +620,15 @@
 
       // Content Panel
       h("div", { className: "filenav__content" },
-        selectedFile
-          ? h("div", {
-              className: "filenav__content-header",
-              title: getDirPathLabel(selectedFile)
-            }, getFilePathLabel(selectedFile) + (getDirPathLabel(selectedFile) ? " — " + getDirPathLabel(selectedFile) : ""))
-          : h("div", { className: "filenav__content-header" }, activeLocationObj ? activeLocationObj.label : "Navigator"),
+        h("div", { className: "filenav__content-header" },
+          selectedFile
+            ? h("span", {
+                className: "filenav__content-header-label",
+                title: getDirPathLabel(selectedFile)
+              }, getFilePathLabel(selectedFile) + (getDirPathLabel(selectedFile) ? " — " + getDirPathLabel(selectedFile) : ""))
+            : h("span", { className: "filenav__content-header-label" }, activeLocationObj ? activeLocationObj.label : "Navigator"),
+          h("span", { className: "filenav__version" }, "v" + PLUGIN_VERSION)
+        ),
 
         selectedFile
           ? (loadingContent

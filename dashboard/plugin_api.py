@@ -73,8 +73,20 @@ def _find_location(key: str):
     return None
 
 
+def _unescape_shell_path(path: str) -> str:
+    """Strip shell-style backslash-escapes (e.g. from a pasted terminal path).
+
+    The location field is a plain text input, not a shell, so a path like
+    ``Mobile\\ Documents`` or ``com\\~apple\\~CloudDocs`` copied from a
+    terminal would otherwise be taken literally (backslashes and all) and
+    never match anything on disk.
+    """
+    return re.sub(r"\\(.)", r"\1", path)
+
+
 def _base_dir(location: dict) -> Path:
-    return Path(os.path.expanduser(location["path"])).resolve()
+    path = _unescape_shell_path(location["path"])
+    return Path(os.path.expanduser(path)).resolve()
 
 
 def _validate_path(base_dir: Path, requested: str):
