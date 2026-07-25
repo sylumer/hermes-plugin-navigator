@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+# Per-user runtime state — generated with default locations on first
+# request if missing. Don't ship one user's folder paths to another.
+locations.json

@@ -1,0 +1,14 @@
+{
+  "name": "navigator",
+  "label": "Navigator",
+  "description": "Browse Markdown files across configurable folder locations.",
+  "icon": "FolderOpen",
+  "version": "1.0.0",
+  "tab": {
+    "path": "/navigator",
+    "position": "after:kanban"
+  },
+  "entry": "dist/index.js",
+  "css": "dist/style.css",
+  "api": "plugin_api.py"
+}

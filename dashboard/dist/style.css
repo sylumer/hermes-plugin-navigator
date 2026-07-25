@@ -1,0 +1,567 @@
+/* Navigator — Styles */
+
+.filenav {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #1e2229;
+  color: #e0e0e0;
+  overflow: hidden;
+}
+
+/* ── Sidebar Panel (Tree) ───────────────────────────── */
+
+.filenav__sidebar {
+  width: 280px;
+  min-width: 200px;
+  max-width: 400px;
+  border-right: 1px solid #2a2f3a;
+  display: flex;
+  flex-direction: column;
+  background: #1a1e24;
+  overflow: hidden;
+}
+
+.filenav__sidebar-header {
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #8b949e;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #2a2f3a;
+  background: #16191e;
+  flex-shrink: 0;
+}
+
+.filenav__location-select {
+  flex: 1;
+  min-width: 0;
+  background: #0d1117;
+  color: #e0e0e0;
+  border: 1px solid #2a2f3a;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+.filenav__location-select:focus {
+  border-color: #58a6ff;
+}
+
+.filenav__icon-btn {
+  background: none;
+  border: 1px solid #2a2f3a;
+  border-radius: 4px;
+  color: #8b949e;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.filenav__icon-btn:hover {
+  color: #e0e0e0;
+  border-color: #58a6ff;
+}
+
+/* ── Add-location form ───────────────────────────────── */
+
+.filenav__add-form {
+  padding: 10px 12px;
+  border-bottom: 1px solid #2a2f3a;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  background: #16191e;
+}
+
+.filenav__add-input {
+  width: 100%;
+  padding: 6px 10px;
+  background: #0d1117;
+  border: 1px solid #2a2f3a;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 12px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.filenav__add-input:focus {
+  border-color: #58a6ff;
+}
+
+.filenav__add-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.filenav__add-save,
+.filenav__add-cancel {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid #2a2f3a;
+}
+
+.filenav__add-save {
+  background: #1f6feb33;
+  color: #58a6ff;
+}
+
+.filenav__add-save:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.filenav__add-cancel {
+  background: none;
+  color: #8b949e;
+}
+
+.filenav__add-error {
+  color: #f85149;
+  font-size: 11px;
+}
+
+/* ── Remove-location confirm bar ──────────────────────── */
+
+.filenav__confirm-bar {
+  padding: 8px 12px;
+  border-bottom: 1px solid #2a2f3a;
+  background: #2d1a1a;
+  color: #f0b3ae;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.filenav__confirm-bar span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filenav__confirm-yes,
+.filenav__confirm-no {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid #4a2a2a;
+  background: none;
+}
+
+.filenav__confirm-yes {
+  color: #f85149;
+  border-color: #f85149;
+}
+
+.filenav__confirm-no {
+  color: #8b949e;
+}
+
+.filenav__search {
+  padding: 8px 12px;
+  border-bottom: 1px solid #2a2f3a;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.filenav__search input {
+  width: 100%;
+  padding: 6px 10px;
+  background: #0d1117;
+  border: 1px solid #2a2f3a;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.filenav__search input:focus {
+  border-color: #58a6ff;
+}
+
+.filenav__search input::placeholder {
+  color: #484f58;
+}
+
+.filenav__tree-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.filenav__tree-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filenav__tree-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filenav__tree-container::-webkit-scrollbar-thumb {
+  background: #2a2f3a;
+  border-radius: 3px;
+}
+
+/* ── Tree Items ──────────────────────────────────────── */
+
+.filenav__tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filenav__tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 16px;
+}
+
+.filenav__tree-item {
+  user-select: none;
+}
+
+.filenav__tree-node {
+  display: flex;
+  align-items: center;
+  padding: 3px 12px 3px 0;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 20px;
+  color: #c9d1d9;
+  transition: background 0.1s;
+}
+
+.filenav__tree-node:hover {
+  background: #1f242c;
+}
+
+.filenav__tree-node.selected {
+  background: #1f6feb33;
+  color: #58a6ff;
+}
+
+.filenav__tree-toggle {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: #484f58;
+  transition: transform 0.15s;
+}
+
+.filenav__tree-toggle.expanded {
+  transform: rotate(90deg);
+}
+
+.filenav__tree-icon {
+  margin-right: 6px;
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+
+.filenav__tree-icon.file {
+  color: #8b949e;
+}
+
+.filenav__tree-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Content Panel ───────────────────────────────────── */
+
+.filenav__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #1e2229;
+}
+
+.filenav__content-header {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #c9d1d9;
+  border-bottom: 1px solid #2a2f3a;
+  background: #16191e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.filenav__content-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c9d1d9;
+  word-wrap: break-word;
+}
+
+.filenav__content-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.filenav__content-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filenav__content-body::-webkit-scrollbar-thumb {
+  background: #2a2f3a;
+  border-radius: 4px;
+}
+
+.filenav__content-body::-webkit-scrollbar-thumb:hover {
+  background: #3a3f4a;
+}
+
+.filenav__empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #484f58;
+  font-size: 14px;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.filenav__loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #484f58;
+  font-size: 13px;
+}
+
+/* ── Resizer ─────────────────────────────────────────── */
+
+.filenav__resizer {
+  width: 4px;
+  cursor: col-resize;
+  background: transparent;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.filenav__resizer:hover {
+  background: #58a6ff;
+}
+
+/* ── Rendered Markdown (GitHub Dark, compact) ─────────── */
+
+.filenav__content-body h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 16px 0 8px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #21262d;
+  color: #f0f6fc;
+}
+
+.filenav__content-body h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 14px 0 6px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid #21262d;
+  color: #f0f6fc;
+}
+
+.filenav__content-body h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 12px 0 6px 0;
+  color: #f0f6fc;
+}
+
+.filenav__content-body h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0 4px 0;
+  color: #f0f6fc;
+}
+
+.filenav__content-body h5 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 4px 0;
+  color: #c9d1d9;
+}
+
+.filenav__content-body h6 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 8px 0 4px 0;
+  color: #8b949e;
+}
+
+.filenav__content-body p {
+  margin: 0 0 10px 0;
+  color: #c9d1d9;
+  line-height: 1.5;
+}
+
+.filenav__content-body a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+.filenav__content-body a:hover {
+  text-decoration: underline;
+}
+
+.filenav__content-body strong {
+  font-weight: 600;
+  color: #f0f6fc;
+}
+
+.filenav__content-body em {
+  font-style: italic;
+  color: #c9d1d9;
+}
+
+.filenav__content-body blockquote {
+  margin: 0 0 10px 0;
+  padding: 4px 12px;
+  border-left: 4px solid #3b434b;
+  color: #8b949e;
+}
+
+.filenav__content-body blockquote p {
+  margin-bottom: 4px;
+}
+
+.filenav__content-body ul {
+  list-style-type: disc;
+  margin: 0 0 10px 0;
+  padding-left: 1.5em;
+  color: #c9d1d9;
+}
+
+.filenav__content-body ol {
+  list-style-type: decimal;
+  margin: 0 0 10px 0;
+  padding-left: 1.5em;
+  color: #c9d1d9;
+}
+
+.filenav__content-body li {
+  margin: 2px 0;
+  line-height: 1.5;
+}
+
+.filenav__content-body li > ul,
+.filenav__content-body li > ol {
+  margin: 2px 0 0 0;
+}
+
+.filenav__content-body pre {
+  margin: 0 0 10px 0;
+  padding: 8px 12px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.filenav__content-body pre code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.filenav__content-body code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 11px;
+  padding: 1px 5px;
+  background: #21262d;
+  border-radius: 4px;
+  color: #f0f6fc;
+}
+
+.filenav__content-body table {
+  margin: 0 0 10px 0;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.filenav__content-body th {
+  padding: 6px 10px;
+  background: #161b22;
+  border: 1px solid #21262d;
+  font-weight: 600;
+  text-align: left;
+  color: #f0f6fc;
+}
+
+.filenav__content-body td {
+  padding: 6px 10px;
+  border: 1px solid #21262d;
+  color: #c9d1d9;
+}
+
+.filenav__content-body tr:nth-child(2n) {
+  background: #0d1117;
+}
+
+.filenav__content-body tr:hover {
+  background: #161b22;
+}
+
+.filenav__content-body hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid #21262d;
+}
+
+.filenav__content-body dl {
+  margin: 0 0 10px 0;
+}
+
+.filenav__content-body dt {
+  font-weight: 600;
+  margin-top: 4px;
+  color: #f0f6fc;
+}
+
+.filenav__content-body dd {
+  margin-left: 1.5em;
+  margin-bottom: 4px;
+  color: #c9d1d9;
+}
