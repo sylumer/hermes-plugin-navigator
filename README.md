@@ -73,3 +73,9 @@ same pattern used by Hermes' own reference plugins. To modify the UI, edit
 Started from Hermes Agent's `exomemory-navigator` / `opportunities-navigator`
 reference plugins — same file-tree-and-Markdown-viewer shape, generalized to
 support more than one hardcoded folder.
+
+## License
+
+Navigator is [Coffeeware](https://raw.githubusercontent.com/sylumer/hermes-plugin-navigator/refs/heads/main/.github/LICENSE.txt) - you can use it for free, [buy me a coffee to say thanks](https://www.buymeacoffee.com/sylumer), and there are some attribution requirements should you want to modify and reshare it.
+
+<a href="https://www.buymeacoffee.com/sylumer" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
