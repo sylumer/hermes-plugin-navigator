@@ -5,6 +5,8 @@ browses Markdown files across any number of user-configured folder
 locations — a single "Navigator" tab with a location switcher, instead of
 one hardcoded plugin per folder.
 
+![Navigator tab screenshot](navigator.png)
+
 ## What it does
 
 Adds a `Navigator` tab to the dashboard (after `Kanban`) with a file-tree
