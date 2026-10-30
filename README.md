@@ -2,14 +2,13 @@
 
 A [Hermes Agent](https://hermes-agent.nousresearch.com) dashboard plugin that
 browses Markdown files across any number of user-configured folder
-locations — a single "Navigator" tab with a location switcher, instead of
-one hardcoded plugin per folder.
+locations — a single "Navigator" tab with a location switcher,.
 
 ![Navigator tab screenshot](navigator.png)
 
 ## What it does
 
-Adds a `Navigator` tab to the dashboard (after `Kanban`) with a file-tree
+Adds a `Navigator` tab to the dashboard with a file-tree
 sidebar, search/filter, and a rendered-Markdown content pane. Unlike a
 folder-specific browser, locations aren't baked into the plugin — you add,
 switch between, and remove named folders from the UI itself.
