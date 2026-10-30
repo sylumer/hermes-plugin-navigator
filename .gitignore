@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .DS_Store
+CLAUDE.md
 
 # Per-user runtime state — generated with default locations on first
 # request if missing. Don't ship one user's folder paths to another.
